@@ -12,12 +12,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Plagiat {
+public class Plagiarism {
 
     private Map<String, Integer> map;
     private File file;
 
-    public Plagiat(File file) throws IOException {
+    public Plagiarism(File file) throws IOException {
         this.file = file;
         this.map = new HashMap<>();
         init();

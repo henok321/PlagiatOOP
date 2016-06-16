@@ -7,13 +7,13 @@ public class Main {
 
     public static void main(String[] args) {
         File file = new File("test.txt");
-        Plagiat plagiat = null;
+        Plagiarism plagiarism = null;
         try {
-            plagiat = new Plagiat(file);
+            plagiarism = new Plagiarism(file);
         } catch (IOException e) {
             System.out.println("error while reading file");
         }
-        System.out.println(plagiat);
-        System.out.println("Checksum:\t" + plagiat.checksum());
+        System.out.println(plagiarism);
+        System.out.println("Checksum:\t" + plagiarism.checksum());
     }
 }
