@@ -1,0 +1,74 @@
+FH Düsseldorf – FB Medien
+Prof. Dr.-Ing. M. Dahm
+OOP2 Sommersemester 2014
+Abschlussaufgabe: Plagiatstest
+Hier die letzte Praktikumsaufgabe, die Sie bis zum Ende des Semesters bearbeiten sollen.
+Das fachliche Thema ist der Umgang mit I/O Streams und Ihrer Java-spezifischen Einsatzweise, sowie dem Umgang mit dynamischen generischen Datenstrukturen sowie die Ausnahmebehandlung.
+Bei der Lösung denken Sie an: 1) Lesen 2) Verstehen 3) Überlegen 4) Beschreiben 5) Codieren
+Der letzte Abgabetermin ist der 24.06.2014, bzw. 25.06.2014 – je nach Ihrer Praktikumsgruppe.
+Bis zum Testat dieser Aufgabe ist weiterhin die Anwesenheit bei den Praktikumsterminen Pflicht solange, bis Sie Ihre Lösung abgegeben und gezeigt haben, dass Sie sie erfolgreich bearbeitet haben.
+Dazu müssen Sie alle folgenden Bedingungen erfüllen.
+- Sie müssen die Aufgaben objektorientiert und mit den angegebenen Methoden lösen.
+- Sie müssen zeigen, dass Ihre Lösung funktioniert, d.h. compilieren, starten, Ausgabe zeigen.
+- Sie müssen den Sourcecode zeigen und erklären können.
+- Der Sourcecode muß nach dem java-doc-Format sinnvoll beschrieben sein.
+- Von anderen kopierte Lösungen können selbstverständlich nicht akzeptiert werden.
+Ohne eine erfolgreiche Bearbeitung dieser Aufgabe können Sie nicht zur Klausur OOP2 zugelassen werden.
+Szenario: Es wird ein Programm benötigt, das ein Text-File einliest, analysiert und den Inhalt codiert anzeigt, damit der Inhalt mit anderen Text-Files verglichen werden kann. Plagiate können so gefunden werden, selbst wenn Worte, Sätze und Abschnitte umgestellt werden.
+Dazu sollten Sie folgende (hier stark vereinfachten) Anforderungen erfüllen.
+Beispiel: Im Text steht „Die Plagiat-Anschuldigung ist absurd, die Arbeit ist kein Plagiat“
+-> Die Worte anschuldigung, absurd, arbeit , kein kommen jeweils 1x vor, plagiat kommt 2x vor.
+Tipp: Lesen Sie zuerst die gesamte Aufgabe komplett durch und bearbeiten Sie Top-Down und schrittweise die jeweils bekannten Aufgabengebiete.
+Viel Erfolg
+Aufgabe 1) Steuerung des gesamten Programms
+Definieren Sie eine Klasse Plagiat zur Steuerung des Ablaufs der unten beschriebenen Aufgaben.
+Beim Aufruf des Programms auf der Kommandozeile soll als Parameter ein filename angegeben werden. Der Aufruf soll so aussehen
+java Plagiat -i=infilename
+Aus dem File werden in einer späteren Aufgabe die wichtigen Worte gelesen. Ein Wort wird im Folgenden jeweils in einem String gespeichert.
+A) In main() von Plagiat wird der Ablauf des Programms gesteuert.
+B) Definieren Sie eine Methode String infilename(String args), die aus den Übergabeparametern den Namen des filenames ermittelt und zurückgibt.
+Definieren Sie eine eigene Subklasse von Exception um bei falschen oder unvollständigen Aufrufparametern eine eigene Exception werfen und in main() behandeln zu können.
+C) Definieren Sie im Verlaufe der Bearbeitung der gesamten Abschlussaufgabe (Aufgabe 2) - 6) ) als IV bzw. IM von Plagiat
+- was Sie für das Zählen und Bewerten von Worten benötigen
+- was Sie für den Aufbau und das Einlesen des Eingabestroms benötigen
+Aufgabe 2) Worte werden zunächst nach Häufigkeit des Auftretens gezählt
+A) Verwenden Sie eine geeignete generische Klasse Java API, in der einzelnen Worte untergebracht und gezählt werden. Diese Wortsammlung definieren Sie als IV von Plagiat.
+B) Definieren Sie eine Methode, die die gesamte Wortsammlung auf die Konsole ausgibt.
+Hinweis: Wie Sie das Auftreten von Strings zählen und eine solche Sammlung sortiert in einen String umwandeln, haben Sie bereits in einer vorangegangenen Praktikumsaufgabe geübt. Verwenden Sie die dort gewonnenen Erkenntnisse und Erfahrungen auch hier.
+Aufgabe 3) Ermitteln Sie eine Checksumme über alle gezählten Worte
+Um die Charakteristik des gelesenen Textes zu ermitteln, ermitteln Sie eine Checksumme des Textes. Diese ist mit den folgenden Schritten zu berechnen und auf die Konsole auszugeben:
+? Die Checksumme des gesamten Textes wird auf die Konsole ausgegeben.
+? Die Checksumme des gesamten Textes ist definiert als die Summe über die Werte aller in der Wortsammlung gezählten Worte
+? Der Wert jedes Wortes ist definiert als Produkt aus der Häufigkeit des Wortes und seiner Quersumme
+? Die Quersumme eines Wortes ist definiert als die Summe der Zeichen eines Wortes.
+Definieren Sie für jede der o.a. Schritte jeweils eine eigene Methode als IM von Plagiat.
+Verwenden Sie für die Berechnung der Checksumme einen Iterator oder eine foreach-Schleife.
+In den folgenden Aufgaben befassen Sie sich mit dem Einlesen von einem File, sowie mit dem schrittweisen Filtern der gelesenen Daten.
+Tipp: Zeichnen Sie sich die Kette von Elementen im Eingabestrom auf und machen Sie sich klar:
+- Welcher Klasse gehört jedes Element an?
+- Welche Methoden werden aufgerufen, was wird jeweils zurückgegeben?
+- Mit welchem Element beginnt der Eingabestrom, d.h. von welchem Element lesen Sie in main()?
+- Mit welchem Element endet er?
+Aufgabe 4) Das File infilename soll eingelesen und gefiltert werden
+Dabei sollen nacheinander die folgenden drei Filterungen vorgenommen werden:
+Filter A) Buchstaben (a-z, ä,ö,ü,ß, A-Z, Ä,Ö,Ü) werden in Kleinbuchstaben umgewandelt, Ziffern (0-9) sollen unverändert weitergegeben werden, alle anderen Zeichen sollen als Leerzeichen weitergegeben werden.
+? Der FilterA gibt einen so bearbeiteten Buchstaben als int zurück.
+Filter B) Der nach A) gefilterte Eingabestrom soll in einzelne Worte separiert werden. Worte werden dabei mit jedem Zeichen getrennt, dessen Wert kleiner oder gleich dem Wert des Leerzeichens ist.
+? Der FilterB gibt ein Wort nach der Konvention zurück, die in Hinweis2 beschrieben ist.
+Filter C) Der nach B) gefilterte Eingabestrom soll unwichtige Worte ausfiltern. Die unwichtigen Worte finden Sie unten im Anhang aufgeführt. Der Filter C gibt erst dann ein Wort zurück, wenn er vom Filter B) ein Wort einliest, das nicht in dieser Aufzählung vorkommt.
+? Der FilterC gibt ein Wort nach der Konvention zurück, die in Hinweis2 beschrieben ist.
+Hinweis1: Für jede diese Aufgaben (A, B, C) definieren Sie jeweils einen (!) speziellen FilterReader. Diese werden in den Einlese-Vorgang an passender (!) Stelle "eingeklinkt“.
+Hinweis2: Halten Sie die Konvention ein, dass ihre FilterReader auch in anderen Kontexten beliebig in den Eingabestrom eingesetzt werden können! Verwenden Sie für das Lesen von ganzen Worten die Methode read (char cbuf[], int off, int len). Der Filter bekommt dabei beim Aufruf von read das Array cbuf[]übergeben und schreibt das nächste Wort, dessen Zeichen er aus dem in-Reader bekommt, dort hinein (ab dem Index off, maximal len Zeichen).
+Hinweis3: Beachten Sie an den geeigneten Stellen die passende Ausnahmebehandlung z.B. wenn das file nicht geöffnet werden konnte oder das Lesen nicht funktioniert.
+Aufgabe 5) Alles zusammen: Worte einlesen und statistisch bearbeiten
+Bauen Sie nun main() komplett zusammen:
+- Werten Sie die Aufrufparameter aus
+- Erstellen Sie die komplette Filterkette vom FileReader über FilterA, FilterB und FilterC
+- Lesen Sie alle Worte des Testfiles (siehe Anhang B)) gefiltert ein.
+- Über eingelesenen Worte erstellen Sie die Statistiken gemäß der Aufgaben 2) und 3) und geben Sie die Ergebnisse auf die Konsole aus, wie dort angegeben.
+Anhang:
+A) Liste der unwichtigen Worten:
+String unwichtigeWorte[] = {
+"die", "der", "und", "in", "zu", "den", "das", "von", "sie", "ist", "des", "sich", "mit", "dem", "dass", "er", "es", "ein", "ich", "auf", "so", "eine", "auch", "als", "an", "nach", "wie", "im", "man", "aber", "aus", "durch", "wenn", "nur", "war", "noch", "werden", "bei", "hat", "wir", "was", "wird", "sein", "einen", "welche", "sind", "oder", "zur", "um", "haben", "einer", "mir", "ihm", "einem", "ihr", "uns", "da", "zum", "kann", "doch", "vor", "mich", "ihn", "du", "hatte", "seine", "am", "denn", "nun", "unter", "sehr", "selbst", "schon", "hier", "bis", "habe", "ihre", "dann", "ihnen", "seiner", "alle", "meine", "vom", "wo", "eines", "sei", "ja", "wurde", "seinen", "wohl", "dieses", "ihren", "würde", "diesen", "sondern", "weil", "welcher", "diesem", "alles", "waren", "will", "mein", "also", "soll", "worden", "lassen", "dies", "machen", "ihrer"};
+B) Testfile
+Sie finden im gleichen Verzeichnis wie diese Aufgabe auch ein Textfile, das Sie für das Testat analysieren sollen. Achten Sie darauf, dass das file im Format ISO8859-1 (Western) gespeichert ist, damit es auch auf einem Mac richtig gelesen werden kann.
