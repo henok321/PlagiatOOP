@@ -32,8 +32,7 @@ public class Plagiarism {
         while ((c = filterC.read(buffer)) != -1) {
             if (c != 0) {
                 String s = String.valueOf(Arrays.copyOfRange(buffer, 0, c));
-                if (map.containsKey(s)) map.put(s, map.get(s) + 1);
-                else map.put(s, 1);
+                map.compute(s, (k, v) -> (v == null) ? 1 : ++v);
             }
         }
     }
