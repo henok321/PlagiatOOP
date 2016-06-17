@@ -15,5 +15,9 @@ public class Main {
         }
         System.out.println(plagiarism);
         System.out.println("Checksum:\t" + plagiarism.checksum());
+        System.out.println(plagiarism.longestWord());
+        System.out.println(plagiarism.shortestWord());
+        System.out.println(plagiarism.mostFrequent());
+        System.out.println(plagiarism.rarest());
     }
 }

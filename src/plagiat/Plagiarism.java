@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +52,22 @@ public class Plagiarism {
             i += c;
         }
         return i;
+    }
+
+    public int longestWord() {
+        return map.keySet().stream().max(Comparator.comparing(String::length)).get().length();
+    }
+
+    public int shortestWord() {
+        return map.keySet().stream().min(Comparator.comparing(String::length)).get().length();
+    }
+
+    public int mostFrequent() {
+        return map.values().stream().max(Comparator.comparing(Integer::intValue)).get();
+    }
+
+    public int rarest() {
+        return map.values().stream().min(Comparator.comparing(Integer::intValue)).get();
     }
 
     @Override
