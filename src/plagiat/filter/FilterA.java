@@ -14,8 +14,7 @@ public class FilterA extends FilterReader {
     public int read() throws IOException {
         int c = in.read();
         if (c == -1) return -1;
-        if (Character.isAlphabetic(c)) return Character.toLowerCase(c);
-        if (Character.isDigit(c)) return c;
+        if (Character.isLetterOrDigit(c)) return Character.toLowerCase(c);
         return ' ';
     }
 }
