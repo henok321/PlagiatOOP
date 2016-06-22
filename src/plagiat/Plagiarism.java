@@ -38,11 +38,7 @@ public class Plagiarism {
     }
 
     public int checksum() {
-        int i = 0;
-        for (Map.Entry<String, Integer> e : map.entrySet()) {
-            i += digitSum(e.getKey()) * e.getValue();
-        }
-        return i;
+        return map.keySet().stream().mapToInt(s -> digitSum(s) * map.get(s)).sum();
     }
 
     private int digitSum(String s) {
