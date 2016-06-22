@@ -30,7 +30,7 @@ public class FilterC extends FilterReader {
     public int read(char[] cbuf) throws IOException {
         int c = in.read(cbuf);
         if (c == -1) return -1;
-        String s = String.valueOf(Arrays.copyOfRange(cbuf, 0, c));
+        String s = new String(cbuf, 0, c);
         if (irrelevantWords.contains(s)) return 0;
         return c;
     }

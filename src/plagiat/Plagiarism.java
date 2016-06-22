@@ -8,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +30,7 @@ public class Plagiarism {
         int c = -1;
         while ((c = filterC.read(buffer)) != -1) {
             if (c != 0) {
-                String s = String.valueOf(Arrays.copyOfRange(buffer, 0, c));
+                String s = new String(buffer, 0, c);
                 map.compute(s, (k, v) -> (v == null) ? 1 : ++v);
             }
         }
