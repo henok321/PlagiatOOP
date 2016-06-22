@@ -46,11 +46,7 @@ public class Plagiarism {
     }
 
     private int digitSum(String s) {
-        int i = 0;
-        for (char c : s.toCharArray()) {
-            i += c;
-        }
-        return i;
+        return s.chars().sum();
     }
 
     public int longestWord() {
