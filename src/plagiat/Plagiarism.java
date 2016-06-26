@@ -62,11 +62,6 @@ public class Plagiarism {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        map.forEach((k, v) -> {
-            sb.append(k).append("\t->\t").append(v).append("\n");
-        });
-
-        return sb.toString();
+        return map.toString();
     }
 }
