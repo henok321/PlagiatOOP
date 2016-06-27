@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         String path = null;
         try {
-            path = readComandLineParams(args);
+            path = readComamndLineParams(args);
         } catch (InvalidCommandLineParameter e) {
             e.printStackTrace();
         }
@@ -30,12 +30,12 @@ public class Main {
         System.out.println(plagiarism.rarest());
     }
 
-    private static String readComandLineParams(String[] args) throws InvalidCommandLineParameter {
+    private static String readComamndLineParams(String[] args) throws InvalidCommandLineParameter {
         if (args == null || args.length == 0) {
-            throw new InvalidCommandLineParameter("file paramter is missing");
+            throw new InvalidCommandLineParameter("missing input file paramter");
         }
         if ((args[0].length() < 3) || !(args[0].substring(0, 3).equalsIgnoreCase("-i="))) {
-            throw new InvalidCommandLineParameter("invalid paramter");
+            throw new InvalidCommandLineParameter("invalid input file paramter");
         }
         return args[0].split("=")[1];
     }
