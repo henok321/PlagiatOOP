@@ -7,6 +7,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Discard irrelevant words. All the irrelevant words are defined in an internal set in this class.
+ *
+ * @author Hendrik Brinkmann
+ */
 public class IrrelevantWordsFilter extends FilterReader {
 
     private static Set<String> irrelevantWords = new HashSet<String>(Arrays.asList(

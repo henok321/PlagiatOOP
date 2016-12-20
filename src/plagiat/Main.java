@@ -5,6 +5,11 @@ import plagiat.exception.InvalidCommandLineParameter;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Initialize an instance of  {@link Plagiarism}, get user input and execute the program.
+ *
+ * @author Hendrik Brinkmann
+ */
 public class Main {
 
     public static void main(String[] args) {
