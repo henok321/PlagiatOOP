@@ -12,7 +12,7 @@ public class Main {
         String path = null;
 
         try {
-            path = readComamndLineParams(args);
+            path = readCommandLineParams(args);
         } catch (InvalidCommandLineParameter e) {
             e.printStackTrace();
         }
@@ -30,7 +30,7 @@ public class Main {
         System.out.println("Checksum:\t" + plagiarism.checksum());
     }
 
-    private static String readComamndLineParams(String[] args) throws InvalidCommandLineParameter {
+    private static String readCommandLineParams(String[] args) throws InvalidCommandLineParameter {
 
         if (args == null || args.length == 0) {
             throw new InvalidCommandLineParameter("missing input file paramter");
