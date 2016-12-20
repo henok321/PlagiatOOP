@@ -4,9 +4,9 @@ import java.io.FilterReader;
 import java.io.IOException;
 import java.io.Reader;
 
-public class FilterA extends FilterReader {
+public class CharacterFilter extends FilterReader {
 
-    public FilterA(Reader in) {
+    public CharacterFilter(Reader in) {
         super(in);
     }
 

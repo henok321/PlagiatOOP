@@ -4,9 +4,9 @@ import java.io.FilterReader;
 import java.io.IOException;
 import java.io.Reader;
 
-public class FilterB extends FilterReader {
+public class WordSeparator extends FilterReader {
 
-    public FilterB(Reader in) {
+    public WordSeparator(Reader in) {
         super(in);
     }
 

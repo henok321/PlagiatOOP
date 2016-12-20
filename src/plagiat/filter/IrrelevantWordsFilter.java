@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class FilterC extends FilterReader {
+public class IrrelevantWordsFilter extends FilterReader {
 
     private static Set<String> irrelevantWords = new HashSet<String>(Arrays.asList(
             new String[]{
@@ -22,7 +22,7 @@ public class FilterC extends FilterReader {
                     "worden", "lassen", "dies", "machen", "ihrer"}
     ));
 
-    public FilterC(Reader in) {
+    public IrrelevantWordsFilter(Reader in) {
         super(in);
     }
 
