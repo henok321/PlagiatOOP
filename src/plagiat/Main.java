@@ -38,11 +38,11 @@ public class Main {
     private static String readCommandLineParams(String[] args) throws InvalidCommandLineParameter {
 
         if (args == null || args.length == 0) {
-            throw new InvalidCommandLineParameter("missing input file paramter");
+            throw new InvalidCommandLineParameter("missing input file parameter");
         }
 
         if ((args[0].length() < 3) || !(args[0].substring(0, 3).equalsIgnoreCase("-i="))) {
-            throw new InvalidCommandLineParameter("invalid input file paramter");
+            throw new InvalidCommandLineParameter("invalid input file parameter");
         }
 
         return args[0].split("=")[1];
