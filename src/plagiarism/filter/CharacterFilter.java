@@ -1,4 +1,4 @@
-package plagiat.filter;
+package plagiarism.filter;
 
 import java.io.FilterReader;
 import java.io.IOException;

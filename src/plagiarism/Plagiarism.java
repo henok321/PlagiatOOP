@@ -1,8 +1,8 @@
-package plagiat;
+package plagiarism;
 
-import plagiat.filter.CharacterFilter;
-import plagiat.filter.IrrelevantWordsFilter;
-import plagiat.filter.WordSeparator;
+import plagiarism.filter.CharacterFilter;
+import plagiarism.filter.IrrelevantWordsFilter;
+import plagiarism.filter.WordSeparator;
 
 import java.io.*;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package plagiat.exception;
+package plagiarism.exception;
 
 /**
  * Thrown if the user enters an invalid command line parameter.

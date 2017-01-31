@@ -1,6 +1,6 @@
-package plagiat;
+package plagiarism;
 
-import plagiat.exception.InvalidCommandLineParameter;
+import plagiarism.exception.InvalidCommandLineParameter;
 
 import java.io.File;
 import java.io.IOException;
