@@ -45,7 +45,10 @@ public class Plagiarism {
     }
 
     public int checksum() {
-        return map.keySet().stream().mapToInt(s -> digitSum(s) * map.get(s)).sum();
+        return map.keySet()
+                .stream()
+                .mapToInt(s -> digitSum(s) * map.get(s))
+                .sum();
     }
 
     private int digitSum(String s) {
