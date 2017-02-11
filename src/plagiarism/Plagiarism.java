@@ -34,7 +34,7 @@ public class Plagiarism {
         FilterReader filterChain = new IrrelevantWordsFilter(new WordSeparator(new CharacterFilter(inputReader)));
 
         char[] buffer = new char[256];
-        int c = -1;
+        int c;
 
         while ((c = filterChain.read(buffer)) != -1) {
             if (c != 0) {
