@@ -30,15 +30,15 @@ public class Plagiarism {
 
     private void init() throws IOException {
 
-        BufferedReader inputReader = new BufferedReader(new FileReader(file));
-        FilterReader filterChain = new IrrelevantWordsFilter(new WordSeparator(new CharacterFilter(inputReader)));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+        FilterReader filterChain = new IrrelevantWordsFilter(new WordSeparator(new CharacterFilter(bufferedReader)));
 
         char[] buffer = new char[256];
-        int c;
+        int readChars;
 
-        while ((c = filterChain.read(buffer)) != -1) {
-            if (c != 0) {
-                String s = new String(buffer, 0, c);
+        while ((readChars = filterChain.read(buffer)) != -1) {
+            if (readChars != 0) {
+                String s = new String(buffer, 0, readChars);
                 map.compute(s, (k, v) -> (v == null) ? 1 : ++v);
             }
         }
