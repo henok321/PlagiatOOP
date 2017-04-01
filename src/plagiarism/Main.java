@@ -41,7 +41,7 @@ public class Main {
             throw new InvalidCommandLineParameter("missing input file parameter");
         }
 
-        if ((args[0].length() < 3) || !(args[0].substring(0, 3).equalsIgnoreCase("-i="))) {
+        if ((args[0].length() < 3) || !(args[0].startsWith("-i="))) {
             throw new InvalidCommandLineParameter("invalid input file parameter");
         }
 
