@@ -38,8 +38,8 @@ public class Plagiarism {
 
         while ((readChars = filterChain.read(buffer)) != -1) {
             if (readChars != 0) {
-                String s = new String(buffer, 0, readChars);
-                map.compute(s, (k, v) -> (v == null) ? 1 : ++v);
+                String word = new String(buffer, 0, readChars);
+                map.compute(word, (k, v) -> (v == null) ? 1 : ++v);
             }
         }
     }
@@ -47,12 +47,12 @@ public class Plagiarism {
     public int checksum() {
         return map.keySet()
                 .stream()
-                .mapToInt(s -> digitSum(s) * map.get(s))
+                .mapToInt(word -> digitSum(word) * map.get(word))
                 .sum();
     }
 
-    private int digitSum(String s) {
-        return s.chars().sum();
+    private int digitSum(String word) {
+        return word.chars().sum();
     }
 
     @Override
