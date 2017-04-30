@@ -11,9 +11,9 @@ import java.io.Reader;
  *
  * @author Hendrik Brinkmann
  */
-public class WordSeparator extends FilterReader {
+public class WordSeparatorFilter extends FilterReader {
 
-    public WordSeparator(Reader in) {
+    public WordSeparatorFilter(Reader in) {
         super(in);
     }
 

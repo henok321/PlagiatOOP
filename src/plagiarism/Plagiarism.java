@@ -2,7 +2,7 @@ package plagiarism;
 
 import plagiarism.filter.CharacterFilter;
 import plagiarism.filter.IrrelevantWordsFilter;
-import plagiarism.filter.WordSeparator;
+import plagiarism.filter.WordSeparatorFilter;
 
 import java.io.*;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ public class Plagiarism {
     private void init() throws IOException {
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-        FilterReader filterChain = new IrrelevantWordsFilter(new WordSeparator(new CharacterFilter(bufferedReader)));
+        FilterReader filterChain = new IrrelevantWordsFilter(new WordSeparatorFilter(new CharacterFilter(bufferedReader)));
 
         char[] buffer = new char[256];
         int readChars;
