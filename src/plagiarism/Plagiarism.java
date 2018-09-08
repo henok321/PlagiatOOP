@@ -45,9 +45,9 @@ public class Plagiarism {
     }
 
     public int checksum() {
-        return map.keySet()
+        return map.entrySet()
                 .stream()
-                .mapToInt(word -> digitSum(word) * map.get(word))
+                .mapToInt(entry -> digitSum(entry.getKey()) * entry.getValue())
                 .sum();
     }
 
