@@ -15,9 +15,10 @@ public class Main {
     public static void main(String[] args) {
 
         String path = null;
+        CliParser cliParser = new CliParser();
 
         try {
-            path = readCommandLineParams(args);
+            path = cliParser.parseCliParams(args);
         } catch (InvalidCommandLineParameter e) {
             e.printStackTrace();
         }
@@ -33,18 +34,5 @@ public class Main {
 
         System.out.println(plagiarism);
         System.out.println("Checksum:\t" + plagiarism.checksum());
-    }
-
-    private static String readCommandLineParams(String[] args) throws InvalidCommandLineParameter {
-
-        if (args == null || args.length == 0) {
-            throw new InvalidCommandLineParameter("missing input file parameter");
-        }
-
-        if ((args[0].length() < 3) || !(args[0].startsWith("-i="))) {
-            throw new InvalidCommandLineParameter("invalid input file parameter");
-        }
-
-        return args[0].split("=")[1];
     }
 }
