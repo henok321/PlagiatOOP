@@ -7,7 +7,9 @@ package plagiarism.exception;
  */
 public class InvalidCommandLineParameter extends Exception {
 
-    public InvalidCommandLineParameter(String message) {
+	private static final long serialVersionUID = 1L;
+
+	public InvalidCommandLineParameter(String message) {
         super(message);
     }
 }
