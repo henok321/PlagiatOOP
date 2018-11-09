@@ -11,9 +11,11 @@ import java.util.Map;
 /**
  * Plagiarism builds a filter chain to read and filter an input text.
  * <p>
- * The filtered data will be stored in this object and the object provides a method to calculate a simple checksum of the input text.
+ * The filtered data will be stored in this object and the object provides a
+ * method to calculate a simple checksum of the input text.
  * <p>
- * This checksum gives information, if the input text might be a plagiarism or not.
+ * This checksum gives information, if the input text might be a plagiarism or
+ * not.
  *
  * @author Hendrik Brinkmann
  */
@@ -30,16 +32,15 @@ public class Plagiarism {
 
     private void init() throws IOException {
 
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-        FilterReader filterChain = new IrrelevantWordsFilter(new WordSeparatorFilter(new CharacterFilter(bufferedReader)));
+        try (FilterReader filterChain = new IrrelevantWordsFilter(new WordSeparatorFilter(new CharacterFilter(new BufferedReader(new FileReader(file)))))) {
+            char[] buffer = new char[256];
+            int readChars;
 
-        char[] buffer = new char[256];
-        int readChars;
-
-        while ((readChars = filterChain.read(buffer)) != -1) {
-            if (readChars != 0) {
-                String word = new String(buffer, 0, readChars);
-                map.compute(word, (k, v) -> (v == null) ? 1 : ++v);
+            while ((readChars = filterChain.read(buffer)) != -1) {
+                if (readChars != 0) {
+                    String word = new String(buffer, 0, readChars);
+                    map.compute(word, (k, v) -> (v == null) ? 1 : ++v);
+                }
             }
         }
     }
