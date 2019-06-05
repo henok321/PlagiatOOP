@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * v
  * Initialize an instance of  {@link Plagiarism}, get user input and execute the program.
  *
  * @author Hendrik Brinkmann
@@ -43,7 +42,5 @@ public class Main {
             throw new InvalidCommandLineParameter("invalid input file parameter");
         else
             return args[0].split("=")[1];
-
-
     }
 }
