@@ -6,23 +6,23 @@ import java.io.Reader;
 
 /**
  * Read a single character and apply the filter criteria.
- * <p>
- * Special characters will be discarded and replaced by whitespaces,
- * digits will be left unchanged and letters will be converted to lower case.
+ *
+ * <p>Special characters will be discarded and replaced by whitespaces, digits will be left
+ * unchanged and letters will be converted to lower case.
  *
  * @author Hendrik Brinkmann
  */
 public class CharacterFilter extends FilterReader {
 
-    public CharacterFilter(Reader in) {
-        super(in);
-    }
+  public CharacterFilter(Reader in) {
+    super(in);
+  }
 
-    @Override
-    public int read() throws IOException {
-        int c = in.read();
-        if (c == -1) return -1;
-        if (Character.isLetterOrDigit(c)) return Character.toLowerCase(c);
-        return ' ';
-    }
+  @Override
+  public int read() throws IOException {
+    int c = in.read();
+    if (c == -1) return -1;
+    if (Character.isLetterOrDigit(c)) return Character.toLowerCase(c);
+    return ' ';
+  }
 }
