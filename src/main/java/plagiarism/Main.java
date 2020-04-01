@@ -2,6 +2,7 @@ package plagiarism;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicReference;
 import plagiarism.exception.InvalidCommandLineParameter;
 
 /**
@@ -11,22 +12,22 @@ import plagiarism.exception.InvalidCommandLineParameter;
  */
 public class Main {
 
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
 
-    String path = null;
+    final AtomicReference<String> path = null;
 
     try {
-      path = parseCliParams(args);
-    } catch (InvalidCommandLineParameter e) {
+      path.set(parseCliParams(args));
+    } catch (final InvalidCommandLineParameter e) {
       System.err.println("Invalid parameter.");
     }
 
-    File file = new File(path);
+    final File file = new File(path.get());
     Plagiarism plagiarism = null;
 
     try {
       plagiarism = new Plagiarism(file);
-    } catch (IOException e) {
+    } catch (final IOException e) {
       System.err.println("error while reading file");
     }
 
@@ -34,7 +35,7 @@ public class Main {
     System.out.println("Checksum:\t" + plagiarism.checksum());
   }
 
-  private static String parseCliParams(String[] args) throws InvalidCommandLineParameter {
+  private static String parseCliParams(final String[] args) throws InvalidCommandLineParameter {
     if (args == null) throw new InvalidCommandLineParameter("missing input file paramter");
     else if ((args[0].length() < 3) || !(args[0].startsWith("-i=")))
       throw new InvalidCommandLineParameter("invalid input file parameter");

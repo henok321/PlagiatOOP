@@ -25,15 +25,15 @@ public class IrrelevantWordsFilter extends FilterReader {
           "diesen", "sondern", "weil", "welcher", "diesem", "alles", "waren", "will", "mein",
           "also", "soll", "worden", "lassen", "dies", "machen", "ihrer");
 
-  public IrrelevantWordsFilter(Reader in) {
+  public IrrelevantWordsFilter(final Reader in) {
     super(in);
   }
 
   @Override
-  public int read(char[] cbuf) throws IOException {
-    int c = in.read(cbuf);
+  public int read(final char[] cbuf) throws IOException {
+    final int c = in.read(cbuf);
     if (c == -1) return -1;
-    String s = new String(cbuf, 0, c);
+    final String s = new String(cbuf, 0, c);
     if (irrelevantWords.contains(s)) return 0;
     return c;
   }

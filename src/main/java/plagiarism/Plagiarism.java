@@ -19,10 +19,10 @@ import plagiarism.filter.WordSeparatorFilter;
  */
 public class Plagiarism {
 
-  private Map<String, Integer> map;
-  private File file;
+  private final Map<String, Integer> map;
+  private final File file;
 
-  public Plagiarism(File file) throws IOException {
+  public Plagiarism(final File file) throws IOException {
     this.file = file;
     this.map = new HashMap<>();
     init();
@@ -30,16 +30,16 @@ public class Plagiarism {
 
   private void init() throws IOException {
 
-    try (FilterReader filterChain =
+    try (final FilterReader filterChain =
         new IrrelevantWordsFilter(
             new WordSeparatorFilter(
                 new CharacterFilter(new BufferedReader(new FileReader(file)))))) {
-      char[] buffer = new char[256];
+      final char[] buffer = new char[256];
       int readChars;
 
       while ((readChars = filterChain.read(buffer)) != -1) {
         if (readChars != 0) {
-          String word = new String(buffer, 0, readChars);
+          final String word = new String(buffer, 0, readChars);
           map.compute(word, (k, v) -> (v == null) ? 1 : ++v);
         }
       }
@@ -52,7 +52,7 @@ public class Plagiarism {
         .sum();
   }
 
-  private int digitSum(String word) {
+  private int digitSum(final String word) {
     return word.chars().sum();
   }
 

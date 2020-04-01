@@ -9,7 +9,7 @@ public class InvalidCommandLineParameter extends RuntimeException {
 
   private static final long serialVersionUID = 1L;
 
-  public InvalidCommandLineParameter(String message) {
+  public InvalidCommandLineParameter(final String message) {
     super(message);
   }
 }
