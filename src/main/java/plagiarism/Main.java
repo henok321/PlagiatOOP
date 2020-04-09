@@ -14,7 +14,7 @@ public class Main {
 
   public static void main(final String[] args) {
 
-    final AtomicReference<String> path = null;
+    final AtomicReference<String> path = new AtomicReference<>();
 
     try {
       path.set(parseCliParams(args));
