@@ -1,5 +1,8 @@
 package plagiarism.filter;
 
+import static java.lang.Character.isLetterOrDigit;
+import static java.lang.Character.toLowerCase;
+
 import java.io.FilterReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -22,7 +25,7 @@ public class CharacterFilter extends FilterReader {
   public int read() throws IOException {
     final int c = in.read();
     if (c == -1) return -1;
-    if (Character.isLetterOrDigit(c)) return Character.toLowerCase(c);
+    if (isLetterOrDigit(c)) return toLowerCase(c);
     return ' ';
   }
 }
