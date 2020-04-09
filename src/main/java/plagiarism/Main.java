@@ -3,6 +3,8 @@ package plagiarism;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import plagiarism.exception.InvalidCommandLineParameter;
 
 /**
@@ -12,6 +14,8 @@ import plagiarism.exception.InvalidCommandLineParameter;
  */
 public class Main {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
+
   public static void main(final String[] args) {
 
     final AtomicReference<String> path = new AtomicReference<>();
@@ -19,7 +23,7 @@ public class Main {
     try {
       path.set(parseCliParams(args));
     } catch (final InvalidCommandLineParameter e) {
-      System.err.println("Invalid parameter.");
+      LOGGER.error("Invalid parameter.");
     }
 
     final File file = new File(path.get());
@@ -28,11 +32,11 @@ public class Main {
     try {
       plagiarism = new Plagiarism(file);
     } catch (final IOException e) {
-      System.err.println("error while reading file");
+      LOGGER.error("error while reading file");
     }
 
-    System.out.println(plagiarism);
-    System.out.println("Checksum:\t" + plagiarism.checksum());
+    LOGGER.info(plagiarism.toString());
+    LOGGER.info("Checksum:\t{}", plagiarism.checksum());
   }
 
   private static String parseCliParams(final String[] args) throws InvalidCommandLineParameter {
