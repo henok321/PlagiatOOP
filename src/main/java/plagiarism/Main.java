@@ -24,13 +24,7 @@ public class Main {
 
     try {
       path.set(parseCliParams(args));
-    } catch (final InvalidCommandLineParameter e) {
-      LOGGER.error("Invalid parameter.");
-    }
-
-    final File file = new File(path.get());
-
-    try {
+      File file = new File(path.get());
       InputStream input;
 
       if (file.exists() && file.canRead()) {
@@ -40,19 +34,21 @@ public class Main {
       }
 
       if (input == null) {
-        LOGGER.error("Cannot resolve file with path <{}>.", file);
+        LOGGER.error("Cannot resolve file with path <{}>.", path.get());
       } else {
         Plagiarism plagiarism = new Plagiarism(input);
         LOGGER.info(plagiarism.toString());
         LOGGER.info("Checksum:\t{}", plagiarism.checksum());
       }
+    } catch (final InvalidCommandLineParameter e) {
+      LOGGER.error("Invalid parameter.", e);
     } catch (IOException e) {
-      LOGGER.error("Unknown error while processing file with path <{}>.", file);
+      LOGGER.error("Unknown error while processing file with path <{}>.", path.get(), e);
     }
   }
 
   private static String parseCliParams(final String[] args) {
-    if (args == null) {
+    if (args == null || args.length == 0) {
       throw new InvalidCommandLineParameter("missing input file paramter");
     } else if ((args[0].length() < 3) || !(args[0].startsWith("-i="))) {
       throw new InvalidCommandLineParameter("invalid input file parameter");
