@@ -27,7 +27,7 @@ public class WordSeparatorFilter extends FilterReader {
     if (c == -1) return -1;
     int i = 0;
 
-    while (!(c == -1 || isWhitespace(c))) {
+    while (c != -1 && !isWhitespace(c)) {
       cbuf[i] = (char) c;
       c = in.read();
       i++;
