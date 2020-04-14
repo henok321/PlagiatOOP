@@ -20,10 +20,10 @@ import plagiarism.filter.WordSeparatorFilter;
 public class Plagiarism {
 
   private final Map<String, Integer> map;
-  private final File file;
+  private final InputStream input;
 
-  public Plagiarism(final File file) throws IOException {
-    this.file = file;
+  public Plagiarism(final InputStream input) throws IOException {
+    this.input = input;
     this.map = new HashMap<>();
     init();
   }
@@ -33,7 +33,7 @@ public class Plagiarism {
     try (final FilterReader filterChain =
         new IrrelevantWordsFilter(
             new WordSeparatorFilter(
-                new CharacterFilter(new BufferedReader(new FileReader(file)))))) {
+                new CharacterFilter(new BufferedReader(new InputStreamReader(input)))))) {
       final char[] buffer = new char[256];
       int readChars;
 
