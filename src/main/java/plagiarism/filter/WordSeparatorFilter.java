@@ -24,7 +24,10 @@ public class WordSeparatorFilter extends FilterReader {
   public int read(final char[] cbuf) throws IOException {
     int c = in.read();
 
-    if (c == -1) return -1;
+    if (c == -1) {
+      return -1;
+    }
+
     int i = 0;
 
     while (c != -1 && !isWhitespace(c)) {

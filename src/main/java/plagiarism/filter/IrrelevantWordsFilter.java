@@ -32,9 +32,16 @@ public class IrrelevantWordsFilter extends FilterReader {
   @Override
   public int read(final char[] cbuf) throws IOException {
     final int c = in.read(cbuf);
-    if (c == -1) return -1;
+
+    if (c == -1) {
+      return -1;
+    }
+
     final String s = new String(cbuf, 0, c);
-    if (irrelevantWords.contains(s)) return 0;
+
+    if (irrelevantWords.contains(s)) {
+      return 0;
+    }
     return c;
   }
 }

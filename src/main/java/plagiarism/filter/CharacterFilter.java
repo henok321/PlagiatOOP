@@ -24,8 +24,15 @@ public class CharacterFilter extends FilterReader {
   @Override
   public int read() throws IOException {
     final int c = in.read();
-    if (c == -1) return -1;
-    if (isLetterOrDigit(c)) return toLowerCase(c);
+
+    if (c == -1) {
+      return -1;
+    }
+
+    if (isLetterOrDigit(c)) {
+      return toLowerCase(c);
+    }
+
     return ' ';
   }
 }
