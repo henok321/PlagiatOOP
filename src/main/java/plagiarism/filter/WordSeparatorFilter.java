@@ -1,6 +1,6 @@
 package plagiarism.filter;
 
-import static java.lang.Character.*;
+import static java.lang.Character.isWhitespace;
 
 import java.io.FilterReader;
 import java.io.IOException;
