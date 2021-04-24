@@ -1,33 +1,19 @@
 package plagiarism.filter;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
 
-import java.io.Reader;
-import org.junit.jupiter.api.BeforeEach;
+import java.io.StringReader;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-@ExtendWith(MockitoExtension.class)
 class WordSeparatorFilterTest {
 
-  @Mock private Reader in;
   private WordSeparatorFilter wordSeparatorFilter;
-
-  @BeforeEach
-  void setUp() {
-    wordSeparatorFilter = new WordSeparatorFilter(in);
-  }
 
   @Test
   void shouldSplitOnWhitespace() throws Exception {
-    final int charakter = 'a';
-    final int whitespace = ' ';
+    wordSeparatorFilter = new WordSeparatorFilter(new StringReader("aa "));
     final int expected = 2;
     final char[] cbuf = new char[2];
-    when(in.read()).thenReturn(charakter).thenReturn(charakter).thenReturn(whitespace);
     final int actual = wordSeparatorFilter.read(cbuf);
     assertThat(String.valueOf(cbuf)).isEqualTo("aa");
     assertThat(actual).isEqualTo(expected);
@@ -35,9 +21,9 @@ class WordSeparatorFilterTest {
 
   @Test
   void shouldEndStream() throws Exception {
-    final int input = -1;
+    wordSeparatorFilter = new WordSeparatorFilter(new StringReader(""));
+
     final int expected = -1;
-    when(in.read()).thenReturn(input);
     final int actual = wordSeparatorFilter.read();
     assertThat(actual).isEqualTo(expected);
   }
