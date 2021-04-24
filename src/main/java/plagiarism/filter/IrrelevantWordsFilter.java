@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class IrrelevantWordsFilter extends FilterReader {
 
-  private static final Set<String> irrelevantWords =
+  private static final Set<String> IRRELEVANT_WORDS =
       Set.of(
           "die", "der", "und", "in", "zu", "den", "das", "von", "sie", "ist", "des", "sich", "mit",
           "dem", "dass", "er", "es", "ein", "ich", "auf", "so", "eine", "auch", "als", "an", "nach",
@@ -39,7 +39,7 @@ public class IrrelevantWordsFilter extends FilterReader {
 
     final String s = new String(cbuf, 0, c);
 
-    if (irrelevantWords.contains(s)) {
+    if (IRRELEVANT_WORDS.contains(s)) {
       return 0;
     }
     return c;
