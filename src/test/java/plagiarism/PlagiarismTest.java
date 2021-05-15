@@ -4,45 +4,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PlagiarismTest {
 
   private Plagiarism plagiarism;
 
-  @Test
-  void checksum() throws Exception {
-    final String input = "Hallo Welt";
+  @ParameterizedTest
+  @ValueSource(
+      strings = {
+        "Hallo Welt",
+        "Hallo die Welt",
+        "Hallo Welt!",
+        "Hallo die Welt",
+        "Hallo, die Welt!"
+      })
+  void checksum(final String input) throws Exception {
     plagiarism = new Plagiarism(new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
-    final int expected = 972;
     final int actual = plagiarism.checksum();
-    assertThat(actual).isEqualTo(expected);
-  }
-
-  @Test
-  void checksumWithSpecialCharacters() throws Exception {
-    final String input = "Hallo Welt!";
-    plagiarism = new Plagiarism(new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
-    final int expected = 972;
-    final int actual = plagiarism.checksum();
-    assertThat(actual).isEqualTo(expected);
-  }
-
-  @Test
-  void checksumWithIrrelevantWords() throws Exception {
-    final String input = "Hallo die Welt";
-    plagiarism = new Plagiarism(new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
-    final int expected = 972;
-    final int actual = plagiarism.checksum();
-    assertThat(actual).isEqualTo(expected);
-  }
-
-  @Test
-  void checksumWithIrrelevantWordsAndSpecialCharacters() throws Exception {
-    final String input = "Hallo, die Welt!";
-    plagiarism = new Plagiarism(new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
-    final int expected = 972;
-    final int actual = plagiarism.checksum();
-    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).isEqualTo(972);
   }
 }
