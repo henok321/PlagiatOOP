@@ -34,12 +34,12 @@ public class Plagiarism {
         new IrrelevantWordsFilter(
             new WordSeparatorFilter(
                 new CharacterFilter(new BufferedReader(new InputStreamReader(input)))))) {
-      final char[] buffer = new char[256];
+      final var buffer = new char[256];
       int readChars;
 
       while ((readChars = filterChain.read(buffer)) != -1) {
         if (readChars != 0) {
-          final String word = new String(buffer, 0, readChars);
+          final var word = new String(buffer, 0, readChars);
           map.compute(word, (k, v) -> (v == null) ? 1 : ++v);
         }
       }

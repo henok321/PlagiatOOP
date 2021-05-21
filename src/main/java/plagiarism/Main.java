@@ -24,7 +24,7 @@ public class Main {
 
     try {
       path.set(parseCliParams(args));
-      File file = new File(path.get());
+      final var file = new File(path.get());
       InputStream input;
 
       if (file.exists() && file.canRead()) {
@@ -36,7 +36,7 @@ public class Main {
       if (input == null) {
         LOGGER.error("Cannot resolve file with path <{}>.", path.get());
       } else {
-        Plagiarism plagiarism = new Plagiarism(input);
+        final var plagiarism = new Plagiarism(input);
         LOGGER.info(plagiarism.toString());
         LOGGER.info("Checksum:\t{}", plagiarism.checksum());
       }
