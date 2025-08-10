@@ -4,15 +4,8 @@
   "enabledManagers": ["maven", "maven-wrapper"],
   "packageRules": [
     {
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch",
-        "digest",
-        "pin"
-      ],
-      "automerge": true,
-      "platformAutomerge": true
+      "matchUpdateTypes": ["minor", "patch", "digest","major"],
+      "automerge": true
     }
   ]
 }
