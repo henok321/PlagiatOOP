@@ -11,7 +11,7 @@ import java.io.Reader;
  * Read a single character and apply the filter criteria.
  *
  * <p>Special characters will be discarded and replaced by whitespaces, digits will be left
- * unchanged and letters will be converted to lower case.
+ * unchanged, and letters will be converted to lower case.
  *
  * @author Hendrik Brinkmann
  */

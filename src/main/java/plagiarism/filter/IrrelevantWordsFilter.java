@@ -37,7 +37,7 @@ public class IrrelevantWordsFilter extends FilterReader {
       return -1;
     }
 
-    final var s = new String(cbuf, 0, c);
+    final String s = new String(cbuf, 0, c);
 
     if (IRRELEVANT_WORDS.contains(s)) {
       return 0;

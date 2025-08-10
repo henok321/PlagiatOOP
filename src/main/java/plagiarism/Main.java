@@ -25,7 +25,7 @@ public class Main {
     try {
       path.set(parseCliParams(args));
       final var file = new File(path.get());
-      InputStream input;
+      final InputStream input;
 
       if (file.exists() && file.canRead()) {
         input = new FileInputStream(file);
@@ -36,20 +36,20 @@ public class Main {
       if (input == null) {
         LOGGER.error("Cannot resolve file with path <{}>.", path.get());
       } else {
-        final var plagiarism = new Plagiarism(input);
-        LOGGER.info(plagiarism.toString());
-        LOGGER.info("Checksum:\t{}", plagiarism.checksum());
+        final Plagiarism plagiarism = new Plagiarism(input);
+        LOGGER.info("Plagiarism: {}", plagiarism);
+        LOGGER.info("Checksum: {}", plagiarism.checksum());
       }
     } catch (final InvalidCommandLineParameter e) {
-      LOGGER.error("Invalid parameter.", e);
-    } catch (IOException e) {
-      LOGGER.error("Unknown error while processing file with path <{}>.", path.get(), e);
+      LOGGER.error("Invalid parameter", e);
+    } catch (final IOException e) {
+      LOGGER.error("Unknown error while processing file with path {}", path.get(), e);
     }
   }
 
   private static String parseCliParams(final String[] args) {
     if (args == null || args.length == 0) {
-      throw new InvalidCommandLineParameter("missing input file paramter");
+      throw new InvalidCommandLineParameter("missing input file parameter");
     } else if ((args[0].length() < 3) || !(args[0].startsWith("-i="))) {
       throw new InvalidCommandLineParameter("invalid input file parameter");
     } else {

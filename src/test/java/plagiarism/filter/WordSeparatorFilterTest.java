@@ -23,8 +23,7 @@ class WordSeparatorFilterTest {
   void shouldEndStream() throws Exception {
     wordSeparatorFilter = new WordSeparatorFilter(new StringReader(""));
 
-    final int expected = -1;
     final int actual = wordSeparatorFilter.read();
-    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).isEqualTo(-1);
   }
 }
