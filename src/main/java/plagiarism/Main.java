@@ -4,27 +4,18 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.atomic.AtomicReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import plagiarism.exception.InvalidCommandLineParameter;
 
 /**
- * Initialize an instance of {@link Plagiarism}, get user input and execute the program.
+ * Get user input and execute the program.
  *
  * @author Hendrik Brinkmann
  */
 public class Main {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
-
   public static void main(final String[] args) {
-
-    final AtomicReference<String> path = new AtomicReference<>();
-
     try {
-      path.set(parseCliParams(args));
-      final var file = new File(path.get());
+      final String path = parseCliParams(args);
+      final var file = new File(path);
       final InputStream input;
 
       if (file.exists() && file.canRead()) {
@@ -34,26 +25,26 @@ public class Main {
       }
 
       if (input == null) {
-        LOGGER.error("Cannot resolve file with path <{}>.", path.get());
+        System.err.println("Cannot resolve file with path <" + path + ">.");
       } else {
         final Plagiarism plagiarism = new Plagiarism(input);
-        LOGGER.info("Plagiarism: {}", plagiarism);
-        LOGGER.info("Checksum: {}", plagiarism.checksum());
+        System.out.println("Plagiarism: " + plagiarism);
+        System.out.println("Checksum: " + plagiarism.checksum());
       }
-    } catch (final InvalidCommandLineParameter e) {
-      LOGGER.error("Invalid parameter", e);
+    } catch (final IllegalArgumentException e) {
+      System.err.println("Invalid parameter: " + e.getMessage());
     } catch (final IOException e) {
-      LOGGER.error("Unknown error while processing file with path {}", path.get(), e);
+      System.err.println("Unknown error while processing file: " + e.getMessage());
     }
   }
 
   private static String parseCliParams(final String[] args) {
     if (args == null || args.length == 0) {
-      throw new InvalidCommandLineParameter("missing input file parameter");
-    } else if ((args[0].length() < 3) || !(args[0].startsWith("-i="))) {
-      throw new InvalidCommandLineParameter("invalid input file parameter");
-    } else {
-      return args[0].split("=")[1];
+      throw new IllegalArgumentException("missing input file parameter");
     }
+    if (args[0].length() < 3 || !args[0].startsWith("-i=")) {
+      throw new IllegalArgumentException("invalid input file parameter");
+    }
+    return args[0].split("=")[1];
   }
 }

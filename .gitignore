@@ -5,3 +5,5 @@ target
 .classpath
 .vscode
 .settings
+dependency-reduced-pom.xml
+pom.xml.versionsBackup
