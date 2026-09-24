@@ -20,15 +20,13 @@ import plagiarism.filter.WordSeparatorFilter;
 public class Plagiarism {
 
   private final Map<String, Integer> map;
-  private final InputStream input;
 
   public Plagiarism(final InputStream input) throws IOException {
-    this.input = input;
     this.map = new HashMap<>();
-    init();
+    init(input);
   }
 
-  private void init() throws IOException {
+  private void init(final InputStream input) throws IOException {
 
     try (final FilterReader filterChain =
         new IrrelevantWordsFilter(
@@ -39,8 +37,7 @@ public class Plagiarism {
 
       while ((readChars = filterChain.read(buffer)) != -1) {
         if (readChars != 0) {
-          final var word = new String(buffer, 0, readChars);
-          map.compute(word, (k, v) -> (v == null) ? 1 : ++v);
+          map.merge(new String(buffer, 0, readChars), 1, Integer::sum);
         }
       }
     }
@@ -48,12 +45,8 @@ public class Plagiarism {
 
   public int checksum() {
     return map.entrySet().stream()
-        .mapToInt(entry -> digitSum(entry.getKey()) * entry.getValue())
+        .mapToInt(entry -> entry.getKey().chars().sum() * entry.getValue())
         .sum();
-  }
-
-  private int digitSum(final String word) {
-    return word.chars().sum();
   }
 
   @Override

@@ -22,6 +22,11 @@ public class WordSeparatorFilter extends FilterReader {
 
   @Override
   public int read(final char[] cbuf) throws IOException {
+
+    if (cbuf == null || cbuf.length == 0) {
+      return -1;
+    }
+
     int c = in.read();
 
     if (c == -1) {
